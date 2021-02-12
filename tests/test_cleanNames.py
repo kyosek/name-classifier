@@ -14,7 +14,7 @@ def test_clean_names():
     
         Input name: "E. D. Abbott Ltd"
         
-        Return: "e d abbot ltd"
+        Expected return: "abbott ltd"
     """
     
     df = pd.read_csv("resources/data.csv")
