@@ -78,7 +78,7 @@ def main(train_required=True):
         
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser("StreetBees - Name classification")
+    parser = argparse.ArgumentParser("Name classification")
 
     parser.add_argument("train_required", type=str, help="wether want to train")
 
