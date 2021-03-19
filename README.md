@@ -6,7 +6,7 @@ The exercise is to develop a classifier that can determine from name alone wheth
 ## Instructions
 For this exercise, I have done brief analyses before I wrote codes. I would be happy if you could have some time to have a look (if you are too busy, it is ok, please read summaries at the top of each notebooks or we can discuss in the interview). "src/notebooks/ExploratoryDataAnalysis.ipynb" is all the EDAs I have done and "src/notebooks/ModellingAnalysis.ipynb" is the modelling analysis (used Naïve bayes, random undersampling + bagging, FastText and Flair model).
 
-To run the code, first please install necessary packages listed in "requirements.txt". Also my Python version is 3.8.5, but I think it should be no problem to run if Python 3.6+.
+To run the code, first please install necessary packages listed in "requirements.txt". Also my Python version is 3.8.5.
 
 The command to run the main function is 
 ```
@@ -44,6 +44,11 @@ In this function, I am using Naïve Bayes algorithm. The reason why I chose this
 
 ## Evaluation of the model
 This model achieved accuracy score = 0.6869 on the test set. Comparing to FastText model's accuracy (= 0.7085), it is a bit less accurate but this model runs pretty quick, which is quite important for the business use case.
+
+Here is the heatmap of the model prediction. We can see that generally correct predictions in all the classes but still there are some difficulties to predict the similar classes such as people's names (class 2, 3 and 4) and "Album" and "Film" (class 11 and 12). Also, the number of "Written work" (class 13) in the dataset is smaller than other classes. Thus, I have tried to take into this account but even though the accuracy of the class 13 improved, the model accuracy (micro F1 score) didn't improve.
+
+![heatmap](./resources/images/prediction-heatmap.png)
+
 ## Next steps
 From the FastText model, it seems using n-gram feature might improve the performance of the model, so as an extension of Naïve Bayes model, it can be applied easily. Similarly, adding part of speech tag in the feature might improve the performance as well. Algorithm-wise, I can try to use neural net model as well especially BiLSTM, but as the input of this model is quite short, I'm not sure how much it will improve the performance and also BiLSTM is computationally expensive. In this context, transformer architecture also might improve the performance but as mentioned above, because of the short input, mussive improvement is questionable. I have tried Flair model in the notebook as well, but for some reasons, the session was killed after 1 epoch (might be running out of the memory). So if I try it in cloud it might solve the issue. But as I mentioned above, those models are quite computationally expensive and the model size is huge. Also I think we can definitely try fine-turned BERT. Its model performance is known to be one of the best and especially this sort of problem setting, this method worked quite well (I have used this method for one of my previous project and worked very well).
 
